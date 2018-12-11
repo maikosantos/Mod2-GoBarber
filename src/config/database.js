@@ -8,10 +8,9 @@ module.exports = {
   define: {
     timestamps: true,
     underscored: true,
-    underscoredAll: true,
+    underscoredAll: true
   }
-};
+}
 
 // node_modules\.bin\sequelize migration:create --name=sessions
 // node_modules\.bin\sequelize db:migrate
-
