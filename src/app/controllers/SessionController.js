@@ -12,17 +12,24 @@ class SessionController {
 
     if (!user) {
       req.flash('error', 'Usuário não encontrado')
-      return res.redirect('/')
+      return req.session.save(() => {
+        return res.redirect('/')
+      })
     }
 
     if (!(await user.checkPassword(password))) {
       req.flash('error', 'Senha incorreta')
-      return res.redirect('/')
+      return req.session.save(() => {
+        return res.redirect('/')
+      })
     }
 
     req.session.user = user
 
-    return res.redirect('/app/dashboard')
+    // return res.redirect('/app/dashboard')
+    return req.session.save(() => {
+      res.redirect('app/dashboard')
+    })
   }
 
   destroy (req, res) {
